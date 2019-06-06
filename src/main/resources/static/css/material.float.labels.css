@@ -1,0 +1,52 @@
+/*inputs*/
+.float-labels input.form-control, .float-labels input[type=text], .float-labels input[type=password], .float-labels input[type=email], .float-labels input[type=number], .float-labels[type=text].form-control, .float-labels[type=password].form-control, .float-labels[type=email].form-control, .float-labels[type=tel].form-control, .float-labels[contenteditable].form-control {
+    padding: 0;
+    padding-top: 10px;
+    border: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    -webkit-box-shadow: inset 0 -1px 0 #dddddd;
+    box-shadow: inset 0 -1px 0 #dddddd;
+    font-size: 16px;
+}
+/*input focus*/
+ .float-labels input.form-control:focus, .float-labels input[type=text]:focus, .float-labels input[type=password]:focus, .float-labels input[type=email]:focus, .float-labels input[type=number]:focus, .float-labels[type=text].form-control:focus, .float-labels[type=password].form-control:focus, .float-labels[type=email].form-control:focus, .float-labels[type=tel].form-control:focus, .float-labels[contenteditable].form-control:focus {
+    -webkit-box-shadow: inset 0 -2px 0 #2196f3;
+    box-shadow: inset 0 -2px 0 #2196f3;
+}
+.float-labels .form-group {
+    margin-bottom: 20px;
+}
+/* --- material floating label --- */
+ .control-label {
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 0.4;
+    pointer-events: none;
+    position: absolute;
+    transform: translate3d(0, 8px, 0) scale(1);
+    transform-origin: left top;
+    transition: 150ms;
+    padding-top: 5px;
+}
+.form-group.focused .control-label {
+    opacity: 1;
+    transform: scale(0.7);
+    color: steelblue;
+    display: inline;
+    padding-top: 0px !important;
+    margin-top: -5px !important;
+}
+.form-control {
+    align-self: flex-end;
+}
+.form-control::-webkit-input-placeholder {
+    color: transparent;
+    transition: 240ms;
+}
+.form-control:focus::-webkit-input-placeholder {
+    transition: none;
+}
+.form-group.focused .form-control::-webkit-input-placeholder {
+    color: #bbb;
+}
