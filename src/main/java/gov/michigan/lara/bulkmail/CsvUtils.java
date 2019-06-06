@@ -20,7 +20,6 @@ public class CsvUtils {
         mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         
-        
         CsvSchema schema = mapper.schemaFor(clazz).withHeader().withColumnReordering(true);
         ObjectReader reader = mapper.readerFor(clazz).with(schema);
         logger.info("reading file for " + clazz.getName());
