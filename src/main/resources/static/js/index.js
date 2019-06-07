@@ -9,6 +9,7 @@ $(function () {
     // blank file on click so change sill fires
     $("#emaillist").click(function () {
         $("#result").text("");
+        $("#emaillist").val("");
     });
 
     $("#emaillist").change(function (e) {
@@ -55,7 +56,7 @@ $(function () {
     $("#body").summernote({
         placeholder: 'Message text',
         tabsize: 2,
-        height: 300
+        height: 400
     });
 
     // reset button
