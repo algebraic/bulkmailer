@@ -1,4 +1,4 @@
-package gov.michigan.lara.bulkmail;
+package gov.michigan.lara.bulkmail.util;
 
 import java.io.IOException;
 import java.io.InputStream;

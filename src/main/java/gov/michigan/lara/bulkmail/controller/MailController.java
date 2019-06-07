@@ -1,4 +1,4 @@
-package gov.michigan.lara.bulkmail;
+package gov.michigan.lara.bulkmail.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import gov.michigan.lara.bulkmail.domain.EmailObject;
+import gov.michigan.lara.bulkmail.util.CsvUtils;
 
 @Controller
 public class MailController {

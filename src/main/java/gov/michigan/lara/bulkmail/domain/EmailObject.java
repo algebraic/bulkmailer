@@ -1,4 +1,4 @@
-package gov.michigan.lara.bulkmail;
+package gov.michigan.lara.bulkmail.domain;
 
 import java.io.Serializable;
 
