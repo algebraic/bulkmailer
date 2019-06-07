@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class CsvUtils {
-    private static final Logger logger = LoggerFactory.getLogger(CsvUtils.class);
+    private static final Logger log = LoggerFactory.getLogger(CsvUtils.class);
 
     public static <T> List<T> read(Class<T> clazz, InputStream stream) {
         CsvMapper mapper = new CsvMapper();
@@ -22,12 +22,12 @@ public class CsvUtils {
         
         CsvSchema schema = mapper.schemaFor(clazz).withHeader().withColumnReordering(true);
         ObjectReader reader = mapper.readerFor(clazz).with(schema);
-        logger.info("reading file for " + clazz.getName());
+        log.info("reading file for " + clazz.getName());
         try {
             return reader.<T>readValues(stream).readAll();
         } catch (IOException e) {
             e.printStackTrace();
-            logger.error(e.getMessage());
+            log.error(e.getMessage());
         }
         return null;
     }
