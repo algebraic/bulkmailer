@@ -1,4 +1,4 @@
-package gov.michigan.lara.bulkmail.util;
+package gov.michigan.lara.bulkmail.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
