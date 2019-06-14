@@ -1,3 +1,21 @@
 small {
     color: lightslategrey;
 }
+
+#footer {
+    min-height: 50px;
+    border: none;
+}
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 58px; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.75); /* Black background with opacity */
+    z-index: 501; /* Specify a stack order in case you're using a different order for other elements */
+    text-align: center;
+  }
