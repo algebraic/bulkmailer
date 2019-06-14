@@ -1,10 +1,10 @@
 $(function() {
 
     // test data
-    $(":text").each(function() {
-        $(this).val($(this).attr("placeholder")).trigger("blur");
-        $("#body").val("testing email system");
-    });
+    // $(":text").each(function() {
+    //     $(this).val($(this).attr("placeholder")).trigger("blur");
+    //     $("#body").val("testing email system");
+    // });
 
     // blank file on click so change sill fires
     $("#emaillist").click(function() {
@@ -32,29 +32,63 @@ $(function() {
 
     });
 
+    $("#from").keydown(function(e) {
+        // on tab, use default from if nothing entered
+        if (e.which == 9 && $(this).val() == "") {
+            $(this).val("noreply@michigan.gov");
+        }
+    });
+
     $("#submit").click(function() {
-        $("#footer-text, #progress, #overlay").toggleClass("d-none");
+        $(".error").removeClass("error");
+        var error = false;
 
-        var file = $("#emaillist")[0].files[0];
-        var formData = new FormData();
-        formData.append('file', file);
-        formData.append('from', $("#from").val());
-        formData.append('subject', $("#subject").val());
-        formData.append('body', $("#body").summernote("code"));
-
-        getProgress();
-
-        $.ajax({
-            url: '/load',
-            type: 'POST',
-            async: true,
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                console.log(data);
+        $(":text.form-control, :file.form-control-file").each(function() {
+            var $this = $(this);
+            if ($this.val() == "" && $this.attr("id")) {
+                error = true;
+                $this.parents(".card").addClass("error");
+            }
+            if ($this.attr("id") == "from") {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                var validEmail = re.test(String($this.val()).toLowerCase());
+                if (!validEmail) {
+                    error = true;
+                    $this.parents(".card").addClass("error");
+                }
             }
         });
+
+        var $note = $(".note-editable");
+        if ($note.text() == "") {
+            $note_parent = $note.parents(".note-editor");
+            $note_parent.addClass("error");
+            error = true;
+        }
+
+        if (!error) {
+            $("#footer-text, #progress, #overlay").toggleClass("d-none");
+            var file = $("#emaillist")[0].files[0];
+            var formData = new FormData();
+            formData.append('file', file);
+            formData.append('from', $("#from").val());
+            formData.append('subject', $("#subject").val());
+            formData.append('body', $("#body").summernote("code"));
+
+            getProgress();
+
+            $.ajax({
+                url: '/load',
+                type: 'POST',
+                async: true,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+        }
 
     });
 
@@ -69,23 +103,15 @@ $(function() {
     $("#reset").click(function() {
         $("#result").text("").addClass("d-none");
         $("#file-note").removeClass("d-none");
-        $("#body").summernote("reset")
+        $("#body").summernote("reset");
+        $(".error").removeClass("error");
     });
 
-    // alert close button
     $("#close").click(function() {
-        // $("#footer-text, #progress, #overlay").toggleClass("d-none");
-        // $("#progressbar").text("0%").attr("aria-valuenow", 0).css("width", "0%");
-        // progress = 0;
+        // alert close button
         window.location.reload();
     });
 });
-
-/*
-fix spinner location on the overlay
-make the from field throw default value on blur?
-getting weirdness with the alert message on success?
-*/
 
 function getProgress() {
     var progress = 0;
@@ -114,7 +140,7 @@ function getProgress() {
                 type: 'GET',
                 success: function(data) {
                     console.info(data);
-                    
+
                     var length = data.length;
                     var length_msg;
                     if (length == 1) {
