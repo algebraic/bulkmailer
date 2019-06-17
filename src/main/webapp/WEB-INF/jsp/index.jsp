@@ -42,14 +42,18 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="index.html">
-            <img src="img/lara_small.png">
-            <span class="ml-2">Bulk Mailer</span>
+            <img src="img/dtmb_small.png">
+            <span class="ml-2 pt-1">Bulk Mailer</span>
         </a>
+        <div class="form-group drive-buttons hide mb-0" style="position:absolute; right:0px;">
+            <a class="nav-link" href="#" id="config" title="config"><i class="fas fa-cogs fa-lg text-light"></i></a>
+        </div>
+
     </nav>
 
     <div id="overlay" class="d-none">
-        <div class="lds-grid" id="load-icon"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-        <div id="completed-msg" class="alert" role="alert">
+            <div class="lds-grid" id="load-icon"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div id="completed-msg" class="alert" role="alert">
             <h4 class="alert-heading">Process Completed</h4>
             <p>The email process has completed with <a id="download"></a></p>
             <hr>
@@ -57,7 +61,7 @@
             <button id="close" class="btn">Close</button>
         </div>
     </div>
-<br>
+    <br>
     <div class="page-content hide float-labels">
         <div class="container">
             <form>
@@ -68,8 +72,12 @@
                                 <h6 class="my-4">Select csv file with email addresses:</h6>
                                 <div class="form-group">
                                     <input type="file" name="emaillist" id="emaillist" class="form-control-file">
-                                    <div class="lds-hourglass-sm d-none" id="loading"><div></div><div></div></div>
-                                    <small id="file-note" class="text-info">emails addresses must be in a csv file with "email" as the header row</small>
+                                    <div class="lds-hourglass-sm d-none" id="loading">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <small id="file-note" class="text-info">emails addresses must be in a csv file with
+                                        "email" as the first item</small>
                                     <small id="result" class="d-none"></small>
                                 </div>
                             </div>
@@ -86,7 +94,8 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="from" class="control-label">From Address</label>
-                                        <input type="text" class="form-control" id="from" name="from" placeholder="noreply@michigan.gov">
+                                        <input type="text" class="form-control" id="from" name="from"
+                                            placeholder="noreply@michigan.gov">
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +105,8 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="subject" class="control-label">Message Subject</label>
-                                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Message Subject">
+                                        <input type="text" class="form-control" id="subject" name="subject"
+                                            placeholder="Message Subject">
                                     </div>
                                 </div>
                             </div>
@@ -122,11 +132,12 @@
             <div class="row fixed-bottom">
                 <div class="col-lg-12 text-center">
                     <div class="alert-dark bg-dark my-0 p-0 text-light" id="footer">
-                        <small style="top: 10px; position: relative;" id="footer-text">LARA Bulk Mailer</small>
-                        <!-- emails addresses must be in a csv file with "email" as the header row -->
+                        <small style="top: 10px; position: relative;" id="footer-text">DTMB Bulk Mailer</small>
+                        <!-- emails addresses must be in a csv file with "email" as the first item -->
                         <div class="progress d-none" id="progress" style="height: 50px">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" id="progressbar"role="progressbar"
-                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+                                id="progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100" style="width: 0%;"></div>
                         </div>
                     </div>
                 </div>
@@ -134,7 +145,7 @@
         </div>
 
     </div>
-    
+
 </body>
 
 </html>
