@@ -41,28 +41,32 @@ $(function() {
 
     $("#submit").click(function() {
         $(".error").removeClass("error");
+        $(".text-danger").remove();
+        var errorText = "<span class='text-danger validation-error'>field required</span>";
+        var emailErrorText = "<span class='text-danger validation-error'>valid email required</span>";
         var error = false;
 
         $(":text.form-control, :file.form-control-file").each(function() {
             var $this = $(this);
-            if ($this.val() == "" && $this.attr("id")) {
-                error = true;
-                $this.parents(".card").addClass("error");
-            }
-            if ($this.attr("id") == "from") {
+            if ($this.attr("id") == "from" && $this.val() != "") {
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 var validEmail = re.test(String($this.val()).toLowerCase());
                 if (!validEmail) {
                     error = true;
-                    $this.parents(".card").addClass("error");
+                    $this.parents(".card").addClass("error").append(emailErrorText);
                 }
             }
+            if ($this.val() == "" && $this.attr("id")) {
+                error = true;
+                $this.parents(".card").addClass("error").append(errorText);
+            }
+            
         });
 
         var $note = $(".note-editable");
         if ($note.text() == "") {
             $note_parent = $note.parents(".note-editor");
-            $note_parent.addClass("error");
+            $note_parent.addClass("error").append(errorText);
             error = true;
         }
 
@@ -105,6 +109,8 @@ $(function() {
         $("#file-note").removeClass("d-none");
         $("#body").summernote("reset");
         $(".error").removeClass("error");
+        $(".error").removeClass("error");
+        $(".text-danger").remove();
     });
 
     $("#close").click(function() {
